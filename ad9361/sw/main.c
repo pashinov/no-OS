@@ -42,6 +42,7 @@
 /******************************************************************************/
 #include "config.h"
 #include "ad9361_api.h"
+#include "ad9361_get_config.h"
 #include "parameters.h"
 #include "platform.h"
 #ifdef CONSOLE_COMMANDS
@@ -423,6 +424,12 @@ int main(void)
 	default_init_param.full_port_enable = 1;
 	default_init_param.digital_interface_tune_fir_disable = 1;
 #endif
+
+	// Get configuration parameters
+	ad9361_get_config(&default_init_param);
+
+	// Get FIR config configuration parameters
+	ad9361_get_config_fir(&default_init_param, &tx_fir_config, &rx_fir_config);
 
 	ad9361_init(&ad9361_phy, &default_init_param);
 
